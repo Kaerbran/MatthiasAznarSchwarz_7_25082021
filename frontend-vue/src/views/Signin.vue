@@ -22,8 +22,19 @@
                 <router-link to="/forgot-password">Mot de passe oublié ?</router-link>
             </p>
         </form>
-    </article>
 
+        <div class="formSecondary">
+            
+            <p class="formSignin__p">
+                Vous n'avez pas de compte: 
+            </p>
+
+            <p  class="formSignin__p">
+                <router-link to="/signup">Inscrivez-vous</router-link>
+            </p>
+        </div>
+
+    </article>
 </template>
 
 <script>
@@ -42,8 +53,8 @@ export default {
     background-color: whitesmoke;
 
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     //background-image: url("./frontend-vue/public/images/icon.png");
     //background-position: center;
 }
@@ -92,6 +103,7 @@ export default {
 
         a{
             text-decoration: none;
+            font-weight: bold;
             display: block;
             color: black;
             cursor: pointer;
@@ -123,6 +135,17 @@ export default {
             }
         }
     }
+}
+
+.formSecondary{
+    background-color: white;
+    width: 350px;
+
+    border: lightgray;
+    border-style: solid;
+    border-width: 1px;
+
+    margin: 15px 0px 15px 0px ;  // top right bottom left
 }
 
 </style>
