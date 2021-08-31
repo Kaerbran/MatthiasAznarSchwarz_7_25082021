@@ -43,7 +43,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -55,8 +55,10 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    //background-image: url("./frontend-vue/public/images/icon.png");
-    //background-position: center;
+
+    /*background-image: url(/frontend-vue/public/images/icon.png);
+    background-size: cover;
+    background-position: left;*/
 }
 
 .formSignin{
@@ -90,7 +92,7 @@ export default {
     }
     &__btt{
         width: 280px; height: 30px;
-        margin: 10px auto 0px auto ;  // top right bottom left
+        margin: 10px auto 20px auto ;  // top right bottom left
 
         border-radius: 5px;
         border: none;
@@ -110,7 +112,6 @@ export default {
             transition: transform 0.5s;
 
             &:hover{
-                color: blue;
                 transform: scale(1.1);
             }
         }
