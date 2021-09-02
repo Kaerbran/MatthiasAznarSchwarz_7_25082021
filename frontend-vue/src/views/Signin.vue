@@ -2,7 +2,7 @@
 
     <article id="articleSignin">
         <form class="formSignin">
-            <h3 class="formSignin__h3">Sign In</h3>
+            <h3 class="formSignin__h3">Sign in</h3>
 
             <div class="formSignin__div">
                 <input type="email" placeholder="Email address" class="formSignin__input" />
