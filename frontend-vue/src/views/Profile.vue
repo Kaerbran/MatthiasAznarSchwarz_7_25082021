@@ -33,6 +33,10 @@ import ProfileSuppression from '../components/profileSuppression';
 
 export default {
     name: "Profile",
+    components: {
+        ProfileModification,
+        ProfileSuppression
+    },
     data() {
         return {
             modalModif : true,
@@ -61,10 +65,6 @@ export default {
                this.modalSupp = !this.modalSupp;
            }
        },
-    },
-    components: {
-        ProfileModification,
-        ProfileSuppression
     }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="">Sign In</h3>
+        <h3 class="">Modifier profile</h3>
         <div class="">
                 <label for="a">ferfr</label>
                 <input type="email" name="a" placeholder="Email address" class="" />
