@@ -1,6 +1,5 @@
 <template>
     <div>
-        
         <article class="postWithImage">
             <div class="postWithImage__1div">
                 <picture class="postWithImage__pictureProfile">
@@ -9,20 +8,21 @@
                 <div class="postWithImage__2div">
                     <h4 class="postWithImage__h4">Kaerbran</h4>
                     <p class="postWithImage__p postWithImage__p--2div">Paris, 14ème arrondissement</p>
-                </div>
+                </div> 
+                <p class="postWithImage__p postWithImage__p--dots">...</p>
             </div>
             <img class="postWithImage__imgPost" src="../assets/black-fox-silhouette.jpg" alt="ici la photo publié">
             <div class="postWithImage__containerIcon">
-                <i class="fas fa-ambulance postWithImage__icon"></i>
-                <i class="fas fa-horse postWithImage__icon"></i>
-                <i class="fas fa-address-card postWithImage__icon"></i>
+                <font-awesome-icon class="postWithImage__icon" icon="heart" />
+                <font-awesome-icon class="postWithImage__icon" icon="comment" />
+                <font-awesome-icon class="postWithImage__icon" icon="paper-plane" />
             </div>
-            <p class="postWithImage__p"><b>Lorem</b> ipsum dolor sit amet consectetur adipisicing elit. Ipsam atque recusandae amet eligendi! Suscipit tempora laudantium quidem, laborum totam dolores, cumque ex blanditiis fuga voluptates eaque sapiente necessitatibus, quod repellendus.</p>
-            <p class="postWithImage__p">Afficher les commentaire</p>
-            <p class="postWithImage__p">Publié il y a 3 jours</p>
+            <p class="postWithImage__p postWithImage__p--padding"><b>Lorem</b> ipsum dolor sit amet consectetur adipisicing elit. Ipsam atque recusandae amet eligendi! Suscipit tempora laudantium quidem, laborum totam dolores, cumque ex blanditiis fuga voluptates eaque sapiente necessitatibus, quod repellendus.</p>
+            <p class="postWithImage__p postWithImage__p--grey postWithImage__p--padding">Afficher les commentaire</p>
+            <p class="postWithImage__p postWithImage__p--grey postWithImage__p--robot postWithImage__p--padding">Publié il y a 3 jours</p>
             <div class="postWithImage__3div">
-                <textarea class="postWithImage__textarea" id="story" name="story" rows="3" cols="20">Ajouter un commentaire</textarea>
-                <button class="postWithImage__btt">submit</button>
+                <textarea class="postWithImage__textarea" id="story" name="story" rows="3" cols="20" placeholder="Ajouter un commentaire..."></textarea>
+                <button class="postWithImage__btt">Publier</button>
             </div>
         </article>
  
@@ -43,14 +43,13 @@ export default {
 
 .postWithImage{
     background-color: white;
+    margin: 0px auto 0px auto ; // top right bottom left
 
     display: flex;
     flex-direction: column;
 
     width: 616px;
-    border: lightgray;
-    border-style: solid;
-    border-width: 1px;
+    border: 1px solid lightgray;
 
     &__1div{
         display: flex;
@@ -95,28 +94,71 @@ export default {
         
     }
     &__containerIcon{
+        display: flex;
 
+        padding: 0px 16px 0px 16px ; // top right bottom left
     }
     &__icon{
+        margin: 0px 15px 7px 0px ; // top right bottom left
+        font-size: 2em;
 
+        &--rightMost{
+            margin: 0px auto 0px 0px ; // top right bottom left
+        }
     }
     &__p{
-
+        text-align: justify;
+        text-justify: auto;
         &--2div{
             margin: 0px auto 0px 10px ; // top right bottom left
         }
+        &--dots{
+            margin: 0px 10px 0px auto ; // top right bottom left
+            font-weight: bold; font-size: 18px;
+        }
+        &--grey{
+            font-style: italic;
+            color: grey;
+            margin: 8px 0px 8px 0px ; // top right bottom left
+        }
+        &--robot{
+            margin: 8px 0px 8px 0px ; // top right bottom left
+        }
+        &--padding{
+            padding: 0px 16px 0px 16px ; // top right bottom left
+        }
+        &--action{
+
+        }
     }
     &__3div{
-
+        display: flex;
+        border-top: 1px solid lightgray;
+        padding: 10px 0px 10px 0px ; // top right bottom left
     }
     &__textarea{
+        padding: 0px 16px 0px 16px ; // top right bottom left
+        outline: none;  //retirer les bords bleu lors du focus
+        resize: none;   //retirer la coche pour rezize la zone de texte
+        overflow: auto; //retirer la barre de navigation
 
+        width: 535px; height: 36px;
+        border: none;
+
+        &::placeholder { 
+            color: gray;
+            font-style: italic;
+            font-size: 1em;
+
+            transform: translateY(9px); //pour center le placeholder
+        }
     }
     &__btt{
-
+        border: none;
+        color: rgb(15, 126, 242); background-color: white;
+        font-weight: bolder;
+        font-size: 1em;
     }
 }
-
-
 
 </style>
