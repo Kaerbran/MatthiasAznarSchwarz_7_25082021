@@ -8,8 +8,8 @@
                 <div class="postWithImage__2div">
                     <h4 class="postWithImage__h4">Kaerbran</h4>
                     <p class="postWithImage__p postWithImage__p--2div">Paris, 14ème arrondissement</p>
-                </div> 
-                <p class="postWithImage__p postWithImage__p--dots">...</p>
+                </div>
+                <button name="Post modification" class="postWithImage__bttDots">...</button> 
             </div>
             <img class="postWithImage__imgPost" src="../assets/black-fox-silhouette.jpg" alt="ici la photo publié">
             <div class="postWithImage__containerIcon">
@@ -106,15 +106,23 @@ export default {
             margin: 0px auto 0px 0px ; // top right bottom left
         }
     }
+    &__bttDots{
+        margin: 0px 10px 0px auto ; // top right bottom left
+        font-weight: bold; font-size: 20px;
+        
+        background-color: white;
+        width: 30px; height: 30px;
+        border: none;
+        &:hover{
+            cursor: pointer;
+        }
+
+    }
     &__p{
         text-align: justify;
         text-justify: auto;
         &--2div{
             margin: 0px auto 0px 10px ; // top right bottom left
-        }
-        &--dots{
-            margin: 0px 10px 0px auto ; // top right bottom left
-            font-weight: bold; font-size: 18px;
         }
         &--grey{
             font-style: italic;
