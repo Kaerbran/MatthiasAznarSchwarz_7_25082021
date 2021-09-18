@@ -1,6 +1,7 @@
 <template>
     <div>
         <article class="postWithImage">
+            <ModalBoxImageArticle/>
             <div class="postWithImage__1div">
                 <picture class="postWithImage__pictureProfile">
                     <img class="postWithImage__imgProfile" src="../assets/EugenieProfile.jpeg" alt="photo de profile de la personne qui a publié l'image">
@@ -25,13 +26,17 @@
                 <button class="postWithImage__btt">Publier</button>
             </div>
         </article>
- 
     </div>
 </template>
 
 <script>
+import ModalBoxImageArticle from '../components/modalBoxImageArticle'
+
 export default {
     name: "ImageArticle",
+    component : {
+        ModalBoxImageArticle
+    },
 }
 </script>
 
@@ -39,6 +44,22 @@ export default {
 *, *:before, *:after {
   box-sizing: border-box;
   margin: 0px 0px 0px 0px ; // top right bottom left
+}
+
+//Style of the modal element
+.modalComponentModification{
+    top: 50%; left: 50%;
+    position: absolute;
+
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    width: 500px; height: 500px;
+    
+    // A RETIRER ! 
+    background-color: green;
 }
 
 .postWithImage{

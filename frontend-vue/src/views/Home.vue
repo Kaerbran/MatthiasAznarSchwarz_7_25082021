@@ -10,7 +10,7 @@ import ImageArticle from "../components/imageArticle"
 export default {
   name: 'Home',
   components: {
-    ImageArticle
+    ImageArticle,
   }
 }
 </script>
@@ -23,7 +23,7 @@ export default {
 
 .home{
   background-color: whitesmoke;
-  
+
   &__component{
 
   }
