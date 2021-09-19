@@ -9,9 +9,9 @@
 
 <script>
 export default {
-    name: "ModalBoxImageArticle",
+    name: "ModalBoxActionArticle",
     setup() {
-        console.log('loading ModalBoxImageArticle component');
+        console.log('%cloading ModalBoxActionArticle newest component', 'color:red');
         return {};
     },
 }
@@ -25,6 +25,8 @@ export default {
 
 .modal{
     display: flex;
+    flex-direction: column;
+
     top: 50%; left: 50%;
     position: absolute;
 
@@ -33,7 +35,7 @@ export default {
     -ms-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
 
-    width: 500px; height: 500px;
+    width: 100px;
     
     // A RETIRER ! 
     background-color: green;

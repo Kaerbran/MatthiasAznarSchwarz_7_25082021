@@ -1,7 +1,7 @@
 <template>
     <div>
         <article class="postWithImage">
-            <ModalBoxImageArticle/>
+            <ModalBoxActionArticle/>
             <div class="postWithImage__1div">
                 <picture class="postWithImage__pictureProfile">
                     <img class="postWithImage__imgProfile" src="../assets/EugenieProfile.jpeg" alt="photo de profile de la personne qui a publié l'image">
@@ -30,15 +30,15 @@
 </template>
 
 <script>
-import ModalBoxImageArticle from '../components/modalBoxImageArticle'
+import ModalBoxActionArticle from '../components/modalBoxActionArticle'
 
 export default {
     name: 'ImageArticle',
-    component : {
-        ModalBoxImageArticle
+    components : {
+        ModalBoxActionArticle
     },
     setup() {
-        console.log('loading ImageArticle component');
+        console.log('%c loading ImageArticle component', 'color:green');
         return {};
     },
 }
