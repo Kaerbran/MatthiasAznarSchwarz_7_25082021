@@ -1,9 +1,12 @@
 <template>
-    <div class="modal">
-        <button class="modal__btt modal__btt--alert">Signaler</button>
-        <button class="modal__btt">Partager</button>
-        <button class="modal__btt">Modifier</button>
-        <button class="modal__btt modal__btt--alert">Supprimer</button>
+    <div class="modalContainer">
+        <div class="modal">
+            <button class="modal__btt modal__btt--alert">Signaler</button>
+            <button class="modal__btt modal__btt--alert">Supprimer</button>
+            <button class="modal__btt">Partager</button>
+            <button class="modal__btt">Modifier</button>
+            <button class="modal__btt modal__btt--alert" @click="emitModalClosed">X</button>
+        </div>
     </div>
 </template>
 
@@ -11,8 +14,13 @@
 export default {
     name: "ModalBoxActionArticle",
     setup() {
-        console.log('%cloading ModalBoxActionArticle newest component', 'color:red');
+        console.log('%c loading ModalBoxActionArticle newest component', 'color:red');
         return {};
+    },
+    methods: {
+        emitModalClosed() {
+            this.$emit('modal-closed', { message: false })
+        }
     },
 }
 </script>
@@ -23,28 +31,34 @@ export default {
   margin: 0px 0px 0px 0px ; // top right bottom left
 }
 
+.modalContainer{
+    position: relative;
+}
+
 .modal{
     display: flex;
     flex-direction: column;
 
-    top: 50%; left: 50%;
+    top: 50px; right: 20px;
     position: absolute;
-
-    -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -ms-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
-
     width: 100px;
-    
-    // A RETIRER ! 
-    background-color: green;
 
-    background-color: red;
     &__btt{
+        font-size: 1em;
+        background-color: whitesmoke;
+
+        //border-radius: 2px;
+        border: lightgray; 
+        border-style: solid; border-width: 1px;
+
+        &:hover{
+            background-color: rgb(167, 164, 164);
+            cursor: pointer;
+        }
 
         &--alert{
-
+            font-weight: bold;
+            color: rgb(230, 50, 70);
         }
     }
 }

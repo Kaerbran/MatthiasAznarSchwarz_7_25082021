@@ -1,7 +1,7 @@
 <template>
     <div>
         <article class="postWithImage">
-            <ModalBoxActionArticle/>
+            <ModalBoxActionArticle v-show="modalModif" @modal-closed="upstreamMessage"/>
             <div class="postWithImage__1div">
                 <picture class="postWithImage__pictureProfile">
                     <img class="postWithImage__imgProfile" src="../assets/EugenieProfile.jpeg" alt="photo de profile de la personne qui a publié l'image">
@@ -10,7 +10,7 @@
                     <h4 class="postWithImage__h4">Kaerbran</h4>
                     <p class="postWithImage__p postWithImage__p--2div">Paris, 14ème arrondissement</p>
                 </div>
-                <button name="Post modification" class="postWithImage__bttDots">...</button> 
+                <button name="Post modification" class="postWithImage__bttDots" @click="clickShowModal()">...</button> 
             </div>
             <img class="postWithImage__imgPost" src="../assets/black-fox-silhouette.jpg" alt="ici la photo publié">
             <div class="postWithImage__containerIcon">
@@ -36,6 +36,19 @@ export default {
     name: 'ImageArticle',
     components : {
         ModalBoxActionArticle
+    },
+    data() {
+        return {
+            modalModif : false,
+        }
+    },
+    methods:{
+        clickShowModal(){  
+            this.modalModif = !this.modalModif;
+        },
+        upstreamMessage(payload) {
+            this.modalModif = payload.message
+        }
     },
     setup() {
         console.log('%c loading ImageArticle component', 'color:green');
