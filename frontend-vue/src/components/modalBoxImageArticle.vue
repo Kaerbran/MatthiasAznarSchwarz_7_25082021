@@ -10,6 +10,10 @@
 <script>
 export default {
     name: "ModalBoxImageArticle",
+    setup() {
+        console.log('loading ModalBoxImageArticle component');
+        return {};
+    },
 }
 </script>
 

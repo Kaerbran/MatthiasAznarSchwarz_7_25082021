@@ -33,9 +33,13 @@
 import ModalBoxImageArticle from '../components/modalBoxImageArticle'
 
 export default {
-    name: "ImageArticle",
+    name: 'ImageArticle',
     component : {
         ModalBoxImageArticle
+    },
+    setup() {
+        console.log('loading ImageArticle component');
+        return {};
     },
 }
 </script>
