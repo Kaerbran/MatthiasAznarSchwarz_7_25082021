@@ -19,7 +19,7 @@
                 <font-awesome-icon class="postWithImage__icon" icon="paper-plane" />
             </div>
             <p class="postWithImage__p postWithImage__p--padding"><b>Lorem</b> ipsum dolor sit amet consectetur adipisicing elit. Ipsam atque recusandae amet eligendi! Suscipit tempora laudantium quidem, laborum totam dolores, cumque ex blanditiis fuga voluptates eaque sapiente necessitatibus, quod repellendus.</p>
-            <p class="postWithImage__p postWithImage__p--grey postWithImage__p--padding">Afficher les commentaire</p>
+            <p class="postWithImage__p postWithImage__p--grey postWithImage__p--padding">Afficher les commentaires</p>
             <p class="postWithImage__p postWithImage__p--grey postWithImage__p--robot postWithImage__p--padding">Publié il y a 3 jours</p>
             <div class="postWithImage__3div">
                 <textarea class="postWithImage__textarea" id="story" name="story" rows="3" cols="20" placeholder="Ajouter un commentaire..."></textarea>
