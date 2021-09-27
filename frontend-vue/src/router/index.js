@@ -25,9 +25,6 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Profile.vue')
   }
 ]
@@ -36,5 +33,11 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+
+//router.beforeEach((to, from, next) => {
+  //ici prendre le token et si il existe, 
+  //ALORS le router vers home. 
+  //SINON vers signin. 
+//})
 
 export default router
