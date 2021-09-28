@@ -1,24 +1,18 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from "typeorm";
-import { Post } from "./Post";
+import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
-@Entity( {name : "Table_Personnes"} )
+@Entity()
 export class User {
 
-    @PrimaryGeneratedColumn("uuid")
-    Person_ID: number;
-
-    @Column({ type: "varchar", length: 80})
-    Person_Email: string;
+    @PrimaryGeneratedColumn()
+    id: number;
 
     @Column()
-    Person_Login: string;
+    firstName: string;
 
     @Column()
-    Person_Password: string;
+    lastName: string;
 
     @Column()
-    Person_Picture: string;
+    age: number;
 
-    @OneToMany( (type) => Post, (Post) => Post.User)
-    Table_Post: Promise<Post[]>;
 }

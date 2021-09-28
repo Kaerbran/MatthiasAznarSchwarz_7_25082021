@@ -1,4 +1,4 @@
-const passwordValidator = require('password-validator');
+const passwordValidator = require('../../../Backend/src/entity/node_modules/password-validator');
 
     // Create a schema
     const passwordSchema = new passwordValidator();
