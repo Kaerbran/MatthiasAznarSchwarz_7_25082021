@@ -11,7 +11,7 @@ export class Post {
     Post_Picture: string;
 
     @Column()
-    Person_ID: string;      //foreign key
+    Person_ID: string;
 
     @Column()
     Post_Location: string;
@@ -23,6 +23,6 @@ export class Post {
     Post_Comment: string;
 
     @ManyToOne((type) => User, (User) => User.Table_Post)
-    User: User;
+    User: Promise<User>;
 
 }

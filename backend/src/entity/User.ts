@@ -20,5 +20,5 @@ export class User {
     Person_Picture: string;
 
     @OneToMany( (type) => Post, (Post) => Post.User)
-    Table_Post: Post[];
+    Table_Post: Promise<Post[]>;
 }
