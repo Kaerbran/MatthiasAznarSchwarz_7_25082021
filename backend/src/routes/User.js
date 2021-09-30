@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const userCtrl = require('../controllers/user');
+const userCtrl = require('../controller/user');
 
 //npm Library 'Express rate limiter'
 //const rateLimiter = require('../middleware/rate-limiter')

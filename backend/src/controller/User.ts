@@ -21,6 +21,7 @@ exports.signup = (req, res, next) => {
         const user = userRepo.create({
             Person_Login: req.body.login,
             Person_Email: req.body.email.toString().toLowerCase(),
+            Person_Picture: "placeholder",
             Person_Password: hash
         })
         userRepo.save(user)
