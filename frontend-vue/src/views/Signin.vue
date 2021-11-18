@@ -40,6 +40,32 @@
 <script>
 export default {
     name: "Signin",
+    data() {},
+	computed: {},
+    methods:{}
+
+    /*
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+        "login": "kaerbran",
+        "password": "12345AZERTY",
+        "user_email": "m.aznar.schwarz@gmail.com"
+    });
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/api/auth/login", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
+    */
 }
 </script>
 

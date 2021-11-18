@@ -4,7 +4,7 @@
             <h3 class="formSignin__h3">Sign Up</h3>
 
             <div class="formSignin__div">
-                <input type="email" placeholder="Email address" class="formSignin__input" />
+                <input type="email" ref="get_email" placeholder="Email address" class="formSignin__input" />
             </div>
 
             <div class="formSignin__div">
@@ -12,14 +12,14 @@
             </div>
 
             <div class="formSignin__div">
-                <input type="text" placeholder="Nom d'utilisateur" class="formSignin__input" />
+                <input type="text" ref="get_login" placeholder="Nom d'utilisateur" class="formSignin__input" />
             </div>
 
             <div class="formSignin__div">
-                <input type="password" placeholder="Password" class="formSignin__input" />
+                <input type="password" ref="get_password" placeholder="Password" class="formSignin__input" />
             </div>
 
-            <button type="submit" class="formSignin__btt">Inscription</button>
+            <button type="submit" @click="PostSignup" class="formSignin__btt">Inscription</button>
         </form>
 
         <div class="formSecondary">
@@ -38,6 +38,47 @@
 <script>
 export default {
     name: "Signup",
+    data() {},
+	computed: {},
+    methods:{
+        async PostSignup () {
+
+            const login = this.$refs.get_login.value;
+            const password = this.$refs.get_password.value;
+            const email = this.$refs.get_email.value;
+
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            if ((login !== undefined) && (password !== undefined) && (email !== undefined)) {
+                try {
+                    var raw = JSON.stringify({
+                        "login": login,
+                        "password": password,
+                        "email": email
+                    });
+
+                    var requestOptions = {
+                        method: 'POST',
+                        headers: myHeaders,
+                        body: raw,
+                        redirect: 'follow'
+                    };
+
+                    fetch("http://localhost:3000/api/auth/signup", requestOptions)
+                    .then(response => response.text())
+                    .then(result => {
+                        console.log(result);
+                        alert(result);
+                    })
+                    .catch(error => console.log('error', error));
+
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        }
+    }
 }
 </script>
 
