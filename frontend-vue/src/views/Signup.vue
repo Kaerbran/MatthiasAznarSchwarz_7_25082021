@@ -19,7 +19,7 @@
                 <input type="password" ref="get_password" placeholder="Password" class="formSignin__input" />
             </div>
 
-            <button type="submit" @click="PostSignup" class="formSignin__btt">Inscription</button>
+            <button type="submit" @click="PostUserSignup" class="formSignin__btt">Inscription</button>
         </form>
 
         <div class="formSecondary">
@@ -41,7 +41,7 @@ export default {
     data() {},
 	computed: {},
     methods:{
-        async PostSignup () {
+        async PostUserSignup () {
 
             const login = this.$refs.get_login.value;
             const password = this.$refs.get_password.value;

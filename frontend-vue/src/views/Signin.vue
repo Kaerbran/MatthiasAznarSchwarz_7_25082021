@@ -5,14 +5,14 @@
             <h3 class="formSignin__h3">Sign in</h3>
 
             <div class="formSignin__div">
-                <input type="email" placeholder="Email address" class="formSignin__input" />
+                <input type="email" ref="get_email" placeholder="Email address" class="formSignin__input" />
             </div>
 
             <div class="formSignin__div">
-                <input type="password" placeholder="Password" class="formSignin__input" />
+                <input type="password" ref="get_password" placeholder="Password" class="formSignin__input" />
             </div>
 
-            <button type="submit" class="formSignin__btt">Connexion</button>
+            <button type="submit" @click="PostUserSignin" class="formSignin__btt">Connexion</button>
 
             <p class="formSignin__p formSignin__p--barre">
                 OU
@@ -41,31 +41,40 @@
 export default {
     name: "Signin",
     data() {},
-	computed: {},
-    methods:{}
+	computed: {
+    },
+    methods:{
+        PostUserSignin () {
+            const password = this.$refs.get_password.value;
+            const email = this.$refs.get_email.value;
 
-    /*
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({
-        "login": "kaerbran",
-        "password": "12345AZERTY",
-        "user_email": "m.aznar.schwarz@gmail.com"
-    });
+            var raw = JSON.stringify({
+                "password": password,
+                "user_email": email
+            });
 
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-    };
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+            };
 
-    fetch("http://localhost:3000/api/auth/login", requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
-    */
+            fetch("http://localhost:3000/api/auth/login", requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+                //-> je mets à jour le store, afin que les données de l'utlisateurs connectées soient prises en compte
+                this.$store.commit('userAuthentification', JSON.parse(result))
+                
+                //-> juste des consoles.log à supprimer plus tard
+                alert(result);
+            })
+            .catch(error => console.log('error', error));
+        }
+    }
 }
 </script>
 
