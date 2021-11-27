@@ -7,7 +7,7 @@
                     <img class="postWithImage__imgProfile" src="../assets/EugenieProfile.jpeg" alt="photo de profile de la personne qui a publié l'image">
                 </picture>
                 <div class="postWithImage__2div">
-                    <h4 class="postWithImage__h4">Kaerbran</h4>
+                    <h4 class="postWithImage__h4">Kaerbran {{articleData.Post_Comment}}</h4>
                     <p class="postWithImage__p postWithImage__p--2div">Paris, 14ème arrondissement</p>
                 </div>
                 <button name="Post modification" class="postWithImage__bttDots" @click="clickShowModal()">...</button> 
@@ -29,17 +29,30 @@
     </div>
 </template>
 
+
 <script>
 import ModalBoxActionArticle from '../components/modalBoxActionArticle'
+
+/* 
+articleData.Post_Comment: "un commentaire"
+articleData.Post_Creator: "d4d2c7d4-e710-4842-9622-915ed21bdd71"
+articleData.Post_Date_modified: "2021-10-22T17:43:10.281Z"
+articleData.Post_Date_published: "2021-10-22T17:43:10.281Z"
+articleData.Post_ID: "48be1774-4563-478b-9201-56ab2887d9a1"
+articleData.Post_Location: "ParisII"
+articleData.Post_Picture: "placeholder.png"
+*/
 
 export default {
     name: 'ImageArticle',
     components : {
         ModalBoxActionArticle
     },
+    props : ['articledata'],
     data() {
         return {
             modalModif : false,
+            articleData : this.articledata,
         }
     },
     methods:{
@@ -54,6 +67,10 @@ export default {
         console.log('%c loading ImageArticle component', 'color:green');
         return {};
     },
+    created () {
+        console.log("this.articleData");
+        console.log(this.articleData);
+    }
 }
 </script>
 

@@ -2,11 +2,11 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    UserName : "Matthias Aznar-Schwarz",
-    UserLogin : "Maznar",
-    UserId : "d4d2c7d4-e710-4842-9622-915ed21bdd71",
-    UserToken : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkNGQyYzdkNC1lNzEwLTQ4NDItOTYyMi05MTVlZDIxYmRkNzEiLCJpYXQiOjE2MzQ5MjI0NTUsImV4cCI6MTYzNTAwODg1NX0.WtrVH_ax1hK8njgadEDBAQFtPhyWScR73AddTIRuzHY",
-    UserEmail : "m.aznar.schwarz@gmail.com",
+    UserName : "",
+    UserLogin : "",
+    UserId : "",
+    UserToken : "",
+    UserEmail : "",
     UserPublications : 35,
     UserFriends : 8,
     Posts : [{
