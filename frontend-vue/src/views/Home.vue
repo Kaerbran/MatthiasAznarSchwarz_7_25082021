@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+      <div class="home__bttCreationPost">
+        Creer un nouveau poste
+      </div>
       <div v-for="(post, index) in posts" :key="index">
         <ImageArticle 
           :articledata="post"
@@ -62,9 +65,29 @@ export default {
 
 .home{
   background-color: whitesmoke;
+  display: flex;  //display direction column by default
+  flex-direction: column;
+
 
   &__component{
 
+  }
+  &__bttCreationPost{
+    margin: 0px auto 15px auto ; // top right bottom left
+    background-color: white;
+
+    width: 350px; height: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: lightgray;
+    border-style: solid;
+    border-width: 1px;
+
+    font-weight: bold;
+    cursor: pointer;
   }
 }
 </style>
