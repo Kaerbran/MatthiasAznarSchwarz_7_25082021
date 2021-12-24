@@ -50,7 +50,7 @@ export default {
                 UserLogin: "UserLogin",
                 UserEmail: "UserEmail",
                 UserPublications: "UserPublications",
-                UserFriends: "UserFriends"
+                UserFriends: "UserFriends",
         }) 
     },
     methods:{
@@ -58,18 +58,14 @@ export default {
                //cette méthode s'activera des qu'un nouveau fichier est chargé
                const file = this.$refs.get_file.files[0];
                this.file = file;
-
-               console.log(file);
        },
        PostUserModify () {
                 console.log("get_user:");
-                console.log(this.$refs.get_user.value);
                 console.log(this.$refs.get_user.value !== "");
                 console.log("get_name:");
-                console.log(this.$refs.get_name.value);
+                console.log(this.$refs.get_name.value !== "");
 
                 console.log("get_file:");
-                console.log(this.file);
                 console.log(this.file !== "");
 
 
@@ -82,37 +78,18 @@ export default {
                                 login = this.UserLogin;
                         }
                         
-                        
-                        /*let formData = new FormData();
+                        let formData = new FormData();
                         formData.append('login', login);
                         formData.append('user_email', this.UserEmail);
-                        formData.append('file', this.file);*/
-
-
-                        var myHeaders = new Headers();
-                        myHeaders.append("Content-Type", "application/json");
-
-                        var raw = JSON.stringify({
-                                "login": login,
-                                "user_email": this.UserEmail,
-                                //"user_oldPassword": oldPassword,
-                                //"user_newPassword": newPassword
-                        });
-
+                        formData.append('image', this.file);
+                        
                         var requestOptions = {
                         method: 'POST',
-                        headers: myHeaders,
-                        body: raw,
-                        file: this.file,
+                        body: formData,
                         redirect: 'follow'
                         };
 
                         fetch("http://localhost:3000/api/auth/modify", requestOptions)
-                        /*fetch("http://localhost:3000/api/auth/modify",
-                        {
-                                body: formData,
-                                method: "post"
-                        })*/
                         .then(response => response.text())
                         .then((result) => {
                                 this.message = result;

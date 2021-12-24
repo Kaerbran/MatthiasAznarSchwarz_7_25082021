@@ -7,6 +7,7 @@ export default createStore({
     UserId : "",
     UserToken : "",
     UserEmail : "",
+    userPicture : "",
     UserPublications : 35,
     UserFriends : 8,
     Posts : [{
@@ -31,6 +32,7 @@ export default createStore({
       state.UserEmail = payload.userEmail;
       state.UserId = payload.userId;
       state.UserToken = payload.token;
+      state.userPicture = payload.userPicture;
 
       console.log("new user authentificated : state has changed");
     }

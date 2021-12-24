@@ -1,8 +1,19 @@
 <template>
   <div class="home">
-      <div class="home__bttCreationPost">
+      <div @click="clickShowModal" class="home__bttCreationPost">
         Creer un nouveau poste
       </div>
+      <div v-show="modalBttPostCreation" class="home__formBackground"></div>
+      <div v-show="modalBttPostCreation" class="home__formCreationPost">
+        <h2>Créer une nouvelle publication</h2>
+        <div>
+          <label for="files">Sélectionnez une photo</label>
+          <input ref="input_file" id="files" style="visibility:hidden" type="file">
+        </div>
+        <input ref="input_location" type="text" placeholder="Indiquez le lieu">
+        <textarea ref="input_commentaire" name="" id="" cols="30" rows="10"></textarea>
+      </div>
+
       <div v-for="(post, index) in posts" :key="index">
         <ImageArticle 
           :articledata="post"
@@ -23,6 +34,7 @@ export default {
   data() {
     return {
       posts : [],
+      modalBttPostCreation : false,
     }
   },
 	computed: {
@@ -52,6 +64,14 @@ export default {
         console.log(this.posts);
       })
       .catch(error => console.log('error', error));
+    },
+    clickShowModal(){  
+      this.modalBttPostCreation = !this.modalBttPostCreation;
+    },
+    createNewPost () {
+
+
+      
     }
   }
 }
@@ -64,6 +84,7 @@ export default {
 }
 
 .home{
+  position: relative;
   background-color: whitesmoke;
   display: flex;  //display direction column by default
   flex-direction: column;
@@ -88,6 +109,25 @@ export default {
 
     font-weight: bold;
     cursor: pointer;
+  }
+  &__formCreationPost{
+    display: flex;
+    flex-direction: column;
+
+    background-color: whitesmoke;
+    padding: 0 15% 15% 15% ; // top right bottom left
+    margin: 15%;
+
+    top: 0px; right: 0px;
+    position: absolute;
+  }
+  &____formBackground{
+    top: 0px; right: 0px;
+    position: absolute;
+    
+    background-color: grey;
+    opacity: 15%;
+    width: 100%; height: 100%;
   }
 }
 </style>

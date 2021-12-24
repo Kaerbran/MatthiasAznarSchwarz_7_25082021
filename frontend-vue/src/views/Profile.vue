@@ -1,7 +1,7 @@
 <template>
     <div class="templateProfile">
         <div class="headerProfile">
-            <img class="headerProfile__img" src="../assets/black-fox-silhouette.jpg" alt="photo de profile de Matthias Aznar-Schwarz">
+            <img class="headerProfile__img" :src="userPicture" alt="photo de profile de Matthias Aznar-Schwarz">
             <div class="headerProfile__divGrp1">
                 <h3 class="headerProfile__h3">{{UserLogin}}</h3>
                 <div class="headerProfile__divGrp2">
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+//"../assets/black-fox-silhouette.jpg"
 import { mapState } from "vuex"
 import ProfileModification from "../components/profileModification"
 import ProfileSuppression from '../components/profileSuppression';
@@ -49,7 +50,8 @@ export default {
 			UserLogin: "UserLogin",
 			UserEmail: "UserEmail",
 			UserPublications: "UserPublications",
-			UserFriends: "UserFriends"
+            UserFriends: "UserFriends",
+            userPicture: "userPicture"
         })
 	},
     methods:{
