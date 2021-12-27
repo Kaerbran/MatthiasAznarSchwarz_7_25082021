@@ -31,10 +31,15 @@ export default createStore({
       state.UserLogin = payload.userLogin;
       state.UserEmail = payload.userEmail;
       state.UserId = payload.userId;
-      state.UserToken = payload.token;
       state.userPicture = payload.userPicture;
+      state.UserName = payload.userName;
 
-      console.log("new user authentificated : state has changed");
+      if (payload.token) {
+        state.UserToken = payload.token;
+        console.log("new user authentificated : state has changed");
+      } else {
+        console.log("user modified : state has changed");
+      }
     }
   },
   actions: {

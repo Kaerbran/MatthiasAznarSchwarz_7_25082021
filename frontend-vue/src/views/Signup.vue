@@ -8,7 +8,7 @@
             </div>
 
             <div class="formSignin__div">
-                <input type="text" placeholder="Nom complet" class="formSignin__input" />
+                <input type="text" ref="get_name" placeholder="Nom complet" class="formSignin__input" />
             </div>
 
             <div class="formSignin__div">
@@ -46,6 +46,7 @@ export default {
             const login = this.$refs.get_login.value;
             const password = this.$refs.get_password.value;
             const email = this.$refs.get_email.value;
+            const name = this.$refs.get_name.value;
 
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
@@ -55,7 +56,8 @@ export default {
                     var raw = JSON.stringify({
                         "login": login,
                         "password": password,
-                        "email": email
+                        "email": email,
+                        "name" : name
                     });
 
                     var requestOptions = {

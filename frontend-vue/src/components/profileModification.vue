@@ -39,10 +39,10 @@ import { mapState } from "vuex"
 export default {
     name: "ProfileModification",
     data() {
-            return {
-                    file:"",
-                    message:""
-            }
+        return {
+                file:"",
+                message:""
+        }
     },
     computed: {
         ...mapState({
@@ -60,28 +60,24 @@ export default {
                this.file = file;
        },
        PostUserModify () {
-                console.log("get_user:");
-                console.log(this.$refs.get_user.value !== "");
-                console.log("get_name:");
-                console.log(this.$refs.get_name.value !== "");
-
-                console.log("get_file:");
-                console.log(this.file !== "");
-
-
                 var login = this.$refs.get_user.value;
+                var name = this.$refs.get_name.value;
                 //const oldPassword = this.$refs.get_oldPassword.value;
                 //const newPassword = this.$refs.get_newPassword.value;
 
-                if ((login !== "") || (this.file !== "")) {
+                if ((login !== "") || (name !== "") || (this.file !== "")) {
                         if (login == "") {
                                 login = this.UserLogin;
+                        }
+                        if (name == "") {
+                                name = this.UserName;
                         }
                         
                         let formData = new FormData();
                         formData.append('login', login);
                         formData.append('user_email', this.UserEmail);
                         formData.append('image', this.file);
+                        formData.append('name', name);
                         
                         var requestOptions = {
                         method: 'POST',
@@ -93,11 +89,14 @@ export default {
                         .then(response => response.text())
                         .then((result) => {
                                 this.message = result;
+
+                                //-> je mets à jour le store, afin que les données de l'utlisateurs connectées soient prises en compte
+                                this.$store.commit('userAuthentification', JSON.parse(result))
                         })
                         .catch(error => console.log('error', error));
                 }
                 else {
-                        this.message = "no value has been changed... Are you kidding us?";
+                        this.message = "no value has been changed... Retry please.";
                 }
        }       
     }
