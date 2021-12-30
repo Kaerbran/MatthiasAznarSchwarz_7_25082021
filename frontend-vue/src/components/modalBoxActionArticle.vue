@@ -27,6 +27,11 @@ export default {
         emitModalClosed() {
             this.$emit('modal-closed', { message: false })
         }
+
+        // a faire / a faire / a faire / a faire / a faire / a faire / a faire
+        // Methode 1 : permettant de communiquer au back-end le signalement
+        // + mise à jour de l'affichage de home
+        // a faire / a faire / a faire / a faire / a faire / a faire / a faire
     },
 }
 </script>

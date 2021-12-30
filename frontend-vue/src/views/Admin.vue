@@ -1,19 +1,5 @@
 <template>
   <div class="home">
-      <div @click="clickShowModal" class="home__bttCreationPost">
-        Creer un nouveau poste
-      </div>
-      <div v-show="modalBttPostCreation" class="home__formBackground"></div>
-      <div v-show="modalBttPostCreation" class="home__formCreationPost">
-        <h2>Créer une nouvelle publication</h2>
-        <div>
-          <label for="files">Sélectionnez une photo</label>
-          <input ref="get_file" id="files" style="visibility:hidden" type="file">
-        </div>
-        <input ref="get_location" type="text" placeholder="Indiquez le lieu">
-        <textarea ref="get_commentaire" name="" id="" cols="30" rows="10"></textarea>
-      </div>
-
       <div v-for="(post, index) in posts" :key="index">
         <ImageArticle 
           :articledata="post"
@@ -33,17 +19,14 @@ export default {
   },
   data() {
     return {
-      file:"",
-      message:"",
       posts : [],
-      modalBttPostCreation : false,
     }
   },
 	computed: {
 		...mapState({
 			UserName: "UserName",
-      UserLogin: "UserLogin",
-      UserId: "UserId",
+            UserLogin: "UserLogin",
+            UserId: "UserId",
 			UserEmail: "UserEmail",
 			UserPublications: "UserPublications",
 			UserFriends: "UserFriends"
@@ -53,15 +36,10 @@ export default {
     await this.getAllPosts()
   },
   methods:{
-    onFileSelect () {
-      //cette méthode s'activera des qu'un nouveau fichier est chargé
-      const file = this.$refs.get_file.files[0];
-      this.file = file;
-    },
     getAllPosts () {
 
       // a faire / a faire / a faire / a faire / a faire / a faire / a faire
-      // MODIFICATION -> faire en sorte que seul les posts validés soit affichés
+      // MODIFICATION -> faire en sorte que seul les posts NON validés soit affichés
       // a faire / a faire / a faire / a faire / a faire / a faire / a faire
 
       var requestOptions = {
@@ -79,38 +57,6 @@ export default {
     },
     clickShowModal(){  
       this.modalBttPostCreation = !this.modalBttPostCreation;
-    },
-    createNewPost () {
-      var comment = this.$refs.get_commentaire.value;
-      var location = this.$refs.get_location.value;
-
-      if ((comment !== "") && (location !== "") && (this.file !== "")) {
-        let formData = new FormData();
-        formData.append('comment', comment);
-        formData.append('location', location);
-        formData.append('image', this.file);
-        formData.append('user_id', this.UserId);
-        formData.append('user', this.UserLogin);
-        
-        var requestOptions = {
-        method: 'POST',
-        body: formData,
-        redirect: 'follow'
-        };
-
-        fetch("http://localhost:3000/api/post/", requestOptions)
-        .then(response => response.text())
-        .then((result) => {
-                this.message = result;
-
-                //A FAIRE 
-                //Lancer la méthode pour télécharger tous les postes
-        })
-        .catch(error => console.log('error', error));
-
-      } else {
-        this.message = "Either the location, or the comment or the picture are missing... Retry please.";
-      }
     }
   }
 }
