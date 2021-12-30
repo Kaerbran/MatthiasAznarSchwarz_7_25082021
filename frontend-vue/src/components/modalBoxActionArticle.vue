@@ -13,6 +13,12 @@
 <script>
 export default {
     name: "ModalBoxActionArticle",
+    props : ['postid'],
+    data() {
+        return {
+            postId : this.postid,
+        }
+    },
     setup() {
         console.log('%c loading ModalBoxActionArticle newest component', 'color:red');
         return {};
