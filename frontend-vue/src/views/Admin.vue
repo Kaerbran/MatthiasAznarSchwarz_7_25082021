@@ -1,7 +1,7 @@
 <template>
   <div class="home">
       <div v-for="(post, index) in posts" :key="index">
-        <ImageArticle 
+        <ImageArticleAdmin 
           :articledata="post"
           class="home__component"/>
       </div>
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import ImageArticle from "../components/imageArticle"
+import ImageArticleAdmin from "../components/imageArticleAdmin"
 import { mapState } from "vuex"
 
 export default {
   name: 'Home',
   components: {
-    ImageArticle,
+    ImageArticleAdmin,
   },
   data() {
     return {
