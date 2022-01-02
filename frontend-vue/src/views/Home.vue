@@ -105,6 +105,9 @@ export default {
                 this.message = result;
  
                 //Lancer la méthode pour télécharger tous les postes
+                //OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION
+                // --->  faire en sorte que seul le nouveau poste soit chargé <---
+                //OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION
                 this.getAllPosts();
         })
         .catch(error => console.log('error', error));
