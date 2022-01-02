@@ -103,9 +103,9 @@ export default {
         .then(response => response.text())
         .then((result) => {
                 this.message = result;
-
-                //A FAIRE 
+ 
                 //Lancer la méthode pour télécharger tous les postes
+                this.getAllPosts();
         })
         .catch(error => console.log('error', error));
 
