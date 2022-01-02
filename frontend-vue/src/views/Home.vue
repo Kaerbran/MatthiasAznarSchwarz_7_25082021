@@ -12,6 +12,7 @@
         </div>
         <input ref="get_location" type="text" placeholder="Indiquez le lieu">
         <textarea ref="get_commentaire" name="" id="" cols="30" rows="10"></textarea>
+        <button @click="createNewPost" > Finaliser la création du nouveau post. </button>
       </div>
 
       <div v-for="(post, index) in posts" :key="index">
