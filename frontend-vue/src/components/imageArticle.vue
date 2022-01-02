@@ -5,7 +5,7 @@
             :postid="articleData.Post_ID" />
             <div class="postWithImage__1div">
                 <picture class="postWithImage__pictureProfile">
-                    <img class="postWithImage__imgProfile" :src="articleData.Post_Picture" alt="photo de profile de la personne qui a publié l'image">
+                    <img class="postWithImage__imgProfile" src="../assets/EugenieProfile.jpeg" alt="photo de profile de la personne qui a publié l'image">
                 </picture>
                 <div class="postWithImage__2div">
                     <h4 class="postWithImage__h4">Kaerbran {{articleData.Post_Comment}}</h4>
@@ -13,7 +13,7 @@
                 </div>
                 <button name="Post modification" class="postWithImage__bttDots" @click="clickShowModal()">...</button> 
             </div>
-            <img class="postWithImage__imgPost" src="../assets/black-fox-silhouette.jpg" alt="ici la photo publié">
+            <img class="postWithImage__imgPost" :src="articleData.Post_Picture" alt="ici la photo publié">
             <div class="postWithImage__containerIcon">
                 <font-awesome-icon class="postWithImage__icon" icon="heart" />
                 <font-awesome-icon class="postWithImage__icon" icon="comment" />

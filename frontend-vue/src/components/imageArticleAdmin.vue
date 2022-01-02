@@ -10,7 +10,7 @@
                     <p class="postWithImage__p postWithImage__p--2div">Paris, 14ème arrondissement</p>
                 </div>
             </div>
-            <img class="postWithImage__imgPost" src="../assets/black-fox-silhouette.jpg" alt="ici la photo publié">
+            <img class="postWithImage__imgPost" :src="articleData.Post_Picture" alt="ici la photo publié">
             <div class="postWithImage__containerIcon">
                 <font-awesome-icon class="postWithImage__icon" icon="check" />
                 <font-awesome-icon class="postWithImage__icon" icon="trash" />
