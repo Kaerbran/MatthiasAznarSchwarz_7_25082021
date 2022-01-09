@@ -99,7 +99,7 @@ export default {
         redirect: 'follow'
         };
 
-        fetch("http://localhost:3000/api/post/", requestOptions)
+        fetch("http://localhost:3000/api/post/approved", requestOptions)
         .then(response => response.text())
         .then((result) => {
                 this.message = result;

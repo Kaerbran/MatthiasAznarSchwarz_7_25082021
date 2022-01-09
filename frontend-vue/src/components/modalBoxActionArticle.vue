@@ -1,7 +1,7 @@
 <template>
     <div class="modalContainer">
         <div class="modal">
-            <button class="modal__btt modal__btt--alert">Signaler</button>
+            <button class="modal__btt modal__btt--alert" @click="reviewModifyPost">Signaler</button>
             <button class="modal__btt modal__btt--alert">Supprimer</button>
             <button class="modal__btt">Partager</button>
             <button class="modal__btt">Modifier</button>
@@ -26,6 +26,9 @@ export default {
     methods: {
         emitModalClosed() {
             this.$emit('modal-closed', { message: false })
+        },
+        reviewModifyPost() {
+
         }
 
         // a faire / a faire / a faire / a faire / a faire / a faire / a faire
