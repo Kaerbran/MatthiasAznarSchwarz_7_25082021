@@ -28,11 +28,21 @@ export default {
             this.$emit('modal-closed', { message: false })
         },
         reviewModifyPost() {
+            let formData = new FormData();
+            formData.append('Post_ID', this.postId);
+            
+            var requestOptions = {
+            method: 'POST',
+            body: formData,
+            redirect: 'follow'
+            };
 
+            fetch("http://localhost:3000/api/post/review", requestOptions)
+            .then(response => response.text())
+            .catch(error => console.log('error', error));
         }
 
         // a faire / a faire / a faire / a faire / a faire / a faire / a faire
-        // Methode 1 : permettant de communiquer au back-end le signalement
         // + mise à jour de l'affichage de home
         // a faire / a faire / a faire / a faire / a faire / a faire / a faire
     },
