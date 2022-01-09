@@ -28,8 +28,11 @@ export default {
             this.$emit('modal-closed', { message: false })
         },
         reviewModifyPost() {
+            const reviewNeeded = 1;
+
             let formData = new FormData();
             formData.append('Post_ID', this.postId);
+            formData.append('reviewStatus', reviewNeeded);
             
             var requestOptions = {
             method: 'POST',
