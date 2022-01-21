@@ -1,7 +1,7 @@
 <template>
     <div>
-        <article class="postWithImage">
-            <ModalBoxActionArticle v-show="modalModif" @modal-closed="upstreamMessage"
+        <article v-show="toggle" class="postWithImage">
+            <ModalBoxActionArticle v-show="modalModif" @modal-closed="upstreamMessage" @article-closed="upstreamMessageArticle"
             :postid="articleData.Post_ID" />
             <div class="postWithImage__1div">
                 <picture class="postWithImage__pictureProfile">
@@ -45,6 +45,7 @@ export default {
         return {
             modalModif : false,
             articleData : this.articledata,
+            toggle : true
         }
     },
     methods:{
@@ -53,6 +54,9 @@ export default {
         },
         upstreamMessage(payload) {
             this.modalModif = payload.message
+        },
+        upstreamMessageArticle(payload) {
+            this.toggle = payload.message
         }
     },
     setup() {
@@ -90,7 +94,7 @@ export default {
 
 .postWithImage{
     background-color: white;
-    margin: 0px auto 0px auto ; // top right bottom left
+    margin: 0px auto 20px auto ; // top right bottom left
 
     display: flex;
     flex-direction: column;

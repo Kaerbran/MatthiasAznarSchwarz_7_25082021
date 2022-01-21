@@ -42,6 +42,12 @@ export default {
 
             fetch("http://localhost:3000/api/post/review", requestOptions)
             .then(response => response.text())
+            .then((result) => {
+                console.log(result);
+
+                this.$emit('article-closed', { message: false })
+
+            })
             .catch(error => console.log('error', error));
         }
 

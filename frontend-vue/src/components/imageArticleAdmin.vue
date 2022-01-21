@@ -76,7 +76,7 @@ export default {
 
 .postWithImage{
     background-color: white;
-    margin: 0px auto 0px auto ; // top right bottom left
+    margin: 0px auto 20px auto ; // top right bottom left
 
     display: flex;
     flex-direction: column;
