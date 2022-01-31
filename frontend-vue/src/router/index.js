@@ -1,6 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
+//permet d'utiliser le store
+//import createStore from '../store/index'
+
 const routes = [
   {
     path: '/',
@@ -39,10 +42,20 @@ const router = createRouter({
   routes
 })
 
-//router.beforeEach((to, from, next) => {
-  //ici prendre le token et si il existe, 
-  //ALORS le router vers home. 
-  //SINON vers signin. 
-//})
+router.beforeEach((to, from, next) => {
+  /* 
+  Est améliorable en utilisant les token. On peut verifier si le token est encore valable, s'il n'est plus valable, 
+  alors on efface les données du datastore et on redirige vers l'autentification.
+  */
+
+  if ((to.name == 'Signup') || (to.name == 'Signin') ) {
+    next()
+  } else {
+    next({ name: 'Signin' })
+  }
+
+  //utilisation du store
+  //console.log(createStore._state.data.UserLogin);
+})
 
 export default router
