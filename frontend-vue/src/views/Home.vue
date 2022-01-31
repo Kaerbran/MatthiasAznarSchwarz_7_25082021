@@ -8,7 +8,7 @@
         <h2>Créer une nouvelle publication</h2>
         <div>
           <label for="files">Sélectionnez une photo</label>
-          <input ref="get_file" id="files" style="visibility:hidden" type="file">
+          <input ref="get_file" @change="onFileSelect" id="files" style="visibility:hidden" type="file">
         </div>
         <input ref="get_location" type="text" placeholder="Indiquez le lieu">
         <textarea ref="get_commentaire" name="" id="" cols="30" rows="10"></textarea>
@@ -70,7 +70,7 @@ export default {
       redirect: 'follow'
       };
 
-      fetch("http://localhost:3000/api/post/", requestOptions)
+      fetch("http://localhost:3000/api/post/approved", requestOptions)
       .then(response => response.text())
       .then((result) => {
         this.posts = JSON.parse(result);
@@ -86,6 +86,7 @@ export default {
       var location = this.$refs.get_location.value;
 
       if ((comment !== "") && (location !== "") && (this.file !== "")) {
+        
         let formData = new FormData();
         formData.append('comment', comment);
         formData.append('location', location);
@@ -94,12 +95,12 @@ export default {
         formData.append('user', this.UserLogin);
         
         var requestOptions = {
-        method: 'POST',
-        body: formData,
-        redirect: 'follow'
+          method: 'POST',
+          body: formData,
+          redirect: 'follow'
         };
 
-        fetch("http://localhost:3000/api/post/approved", requestOptions)
+        fetch("http://localhost:3000/api/post/", requestOptions)
         .then(response => response.text())
         .then((result) => {
                 this.message = result;
@@ -113,6 +114,7 @@ export default {
         .catch(error => console.log('error', error));
 
       } else {
+        console.log("3");
         this.message = "Either the location, or the comment or the picture are missing... Retry please.";
       }
     }

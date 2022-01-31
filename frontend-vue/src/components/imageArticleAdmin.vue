@@ -6,8 +6,8 @@
                     <img class="postWithImage__imgProfile" src="../assets/EugenieProfile.jpeg" alt="photo de profile de la personne qui a publié l'image">
                 </picture>
                 <div class="postWithImage__2div">
-                    <h4 class="postWithImage__h4">Kaerbran {{articleData.Post_Comment}}</h4>
-                    <p class="postWithImage__p postWithImage__p--2div">Paris, 14ème arrondissement</p>
+                    <h4 class="postWithImage__h4">{{articleData.Post_Creator}}</h4>
+                    <p class="postWithImage__p postWithImage__p--2div">{{articleData.Post_Location}}</p>
                 </div>
             </div>
             <img class="postWithImage__imgPost" :src="articleData.Post_Picture" alt="ici la photo publié">
@@ -15,7 +15,7 @@
                 <font-awesome-icon class="postWithImage__icon" icon="check" />
                 <font-awesome-icon class="postWithImage__icon" icon="trash" />
             </div>
-            <p class="postWithImage__p postWithImage__p--padding"><b>Lorem</b> ipsum dolor sit amet consectetur adipisicing elit. Ipsam atque recusandae amet eligendi! Suscipit tempora laudantium quidem, laborum totam dolores, cumque ex blanditiis fuga voluptates eaque sapiente necessitatibus, quod repellendus.</p>
+            <p class="postWithImage__p postWithImage__p--padding">{{articleData.Post_Comment}}</p>
             <p class="postWithImage__p postWithImage__p--grey postWithImage__p--robot postWithImage__p--padding">Publié il y a 3 jours</p>
         </article>
     </div>

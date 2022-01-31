@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
 //permet d'utiliser le store
-//import createStore from '../store/index'
+import createStore from '../store/index'
 
 const routes = [
   {
@@ -48,14 +48,11 @@ router.beforeEach((to, from, next) => {
   alors on efface les données du datastore et on redirige vers l'autentification.
   */
 
-  if ((to.name == 'Signup') || (to.name == 'Signin') ) {
+  if ( (createStore._state.data.UserLogin) || ((to.name == 'Signup') || (to.name == 'Signin')) ) {
     next()
   } else {
     next({ name: 'Signin' })
   }
-
-  //utilisation du store
-  //console.log(createStore._state.data.UserLogin);
 })
 
 export default router

@@ -78,7 +78,6 @@ export default {
                         formData.append('user_email', this.UserEmail);
                         formData.append('image', this.file);
                         formData.append('name', name);
-                        
                         var requestOptions = {
                         method: 'POST',
                         body: formData,
