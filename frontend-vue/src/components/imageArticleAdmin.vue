@@ -1,6 +1,6 @@
 <template>
     <div>
-        <article class="postWithImage">
+        <article class="postWithImage" v-show="toggle" >
             <div class="postWithImage__1div">
                 <picture class="postWithImage__pictureProfile">
                     <img class="postWithImage__imgProfile" src="../assets/EugenieProfile.jpeg" alt="photo de profile de la personne qui a publié l'image">
@@ -12,8 +12,8 @@
             </div>
             <img class="postWithImage__imgPost" :src="articleData.Post_Picture" alt="ici la photo publié">
             <div class="postWithImage__containerIcon">
-                <font-awesome-icon class="postWithImage__icon" icon="check" />
-                <font-awesome-icon class="postWithImage__icon" icon="trash" />
+                <font-awesome-icon class="postWithImage__icon" @click="reviewModifyPost" icon="check" />
+                <font-awesome-icon class="postWithImage__icon" @click="deletePost" icon="trash" />
             </div>
             <p class="postWithImage__p postWithImage__p--padding">{{articleData.Post_Comment}}</p>
             <p class="postWithImage__p postWithImage__p--grey postWithImage__p--robot postWithImage__p--padding">Publié il y a 3 jours</p>
@@ -24,6 +24,7 @@
 
 <script>
 //:src="userPicture"
+import { mapState } from "vuex"
 
 export default {
     name: 'ImageArticle',
@@ -31,7 +32,19 @@ export default {
     data() {
         return {
             articleData : this.articledata,
+            toggle : true
         }
+    },
+	computed: {
+		...mapState({
+			UserName: "UserName",
+            UserLogin: "UserLogin",
+            UserToken: "UserToken",
+            UserId: "UserId",
+			UserEmail: "UserEmail",
+			UserPublications: "UserPublications",
+			UserFriends: "UserFriends"
+        })
     },
     methods:{
         clickShowModal(){  
@@ -39,6 +52,54 @@ export default {
         },
         upstreamMessage(payload) {
             this.modalModif = payload.message
+        },
+        reviewModifyPost() {
+            const reviewNeeded = 0;   //autorise l'affichage dans home
+
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + this.UserToken);
+
+            let formData = new FormData();
+            formData.append('Post_ID', this.articledata.Post_ID);
+            formData.append('reviewStatus', reviewNeeded);
+            
+            var requestOptions = {
+                method: 'POST',
+                body: formData,
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch("http://localhost:3000/api/post/review", requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+                this.toggle = false;
+                console.log(result);
+            })
+            .catch(error => console.log('error', error));
+        },
+        deletePost() {
+
+            let formData = new FormData();
+            formData.append('Post_ID', this.articledata.Post_ID);
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + this.UserToken);
+
+            var requestOptions = {
+                method: 'POST',
+                body: formData,
+                headers: myHeaders,
+                redirect: 'follow'
+            };
+
+            fetch("http://localhost:3000/api/post/delete", requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+                this.toggle = false;
+                console.log(result);
+            })
+            .catch(error => console.log('error', error));
         }
     },
     setup() {

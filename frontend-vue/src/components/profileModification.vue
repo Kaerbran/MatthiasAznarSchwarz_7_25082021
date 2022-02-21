@@ -73,14 +73,19 @@ export default {
                                 name = this.UserName;
                         }
                         
+                        var myHeaders = new Headers();
+                        myHeaders.append("Authorization", "Bearer " + this.UserToken);
+
                         let formData = new FormData();
                         formData.append('login', login);
                         formData.append('user_email', this.UserEmail);
                         formData.append('image', this.file);
                         formData.append('name', name);
+
                         var requestOptions = {
                         method: 'POST',
                         body: formData,
+                        headers: myHeaders,
                         redirect: 'follow'
                         };
 

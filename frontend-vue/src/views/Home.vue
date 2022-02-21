@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" :key="refreshKey">
       <div @click="clickShowModal" class="home__bttCreationPost">
         Creer un nouveau poste
       </div>
@@ -38,12 +38,14 @@ export default {
       message:"",
       posts : [],
       modalBttPostCreation : false,
+      refreshKey: 0,
     }
   },
 	computed: {
 		...mapState({
 			UserName: "UserName",
       UserLogin: "UserLogin",
+      UserToken: "UserToken",
       UserId: "UserId",
 			UserEmail: "UserEmail",
 			UserPublications: "UserPublications",
@@ -61,12 +63,12 @@ export default {
     },
     getAllPosts () {
 
-      // a faire / a faire / a faire / a faire / a faire / a faire / a faire
-      // MODIFICATION -> faire en sorte que seul les posts validés soit affichés
-      // a faire / a faire / a faire / a faire / a faire / a faire / a faire
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Bearer " + this.UserToken);
 
       var requestOptions = {
       method: 'GET',
+      headers: myHeaders,
       redirect: 'follow'
       };
 
@@ -75,8 +77,12 @@ export default {
       .then((result) => {
         this.posts = JSON.parse(result);
         console.log(this.posts);
+        Promise.resolve("Maj des posts réussie");
       })
-      .catch(error => console.log('error', error));
+      .catch((error) => {
+        console.log('error', error)
+        Promise.reject("Maj des posts n'a pas réussie");
+      });
     },
     clickShowModal(){  
       this.modalBttPostCreation = !this.modalBttPostCreation;
@@ -94,22 +100,32 @@ export default {
         formData.append('user_id', this.UserId);
         formData.append('user', this.UserLogin);
         
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + this.UserToken);
+
         var requestOptions = {
           method: 'POST',
           body: formData,
+          headers: myHeaders,
           redirect: 'follow'
         };
 
         fetch("http://localhost:3000/api/post/", requestOptions)
         .then(response => response.text())
         .then((result) => {
-                this.message = result;
- 
-                //Lancer la méthode pour télécharger tous les postes
-                //OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION
-                // --->  faire en sorte que seul le nouveau poste soit chargé <---
-                //OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION
-                this.getAllPosts();
+          this.message = result;
+
+          //Lancer la méthode pour télécharger tous les postes
+          //OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION
+          // --->  faire en sorte que seul le nouveau poste soit chargé <---
+          //OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION
+          this.getAllPosts();
+        })
+        .then((resultGetAllPost) => {
+          console.log(resultGetAllPost);
+
+          //refreshing a key on a components, triggers a re-render of it
+          this.refreshKey += 1;
         })
         .catch(error => console.log('error', error));
 

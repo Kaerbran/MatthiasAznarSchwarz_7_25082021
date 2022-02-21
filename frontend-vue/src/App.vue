@@ -1,10 +1,10 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/signin">Sign In</router-link> |
-    <router-link to="/profile">Profile</router-link> |
-    <router-link to="/admin">Admin</router-link>
+    <router-link to="/" v-if="UserName" >Home |</router-link>
+    <router-link to="/about" v-if="UserName">About |</router-link>
+    <router-link to="/signin" v-if="UserName">Sign In |</router-link>
+    <router-link to="/profile" v-if="UserName">Profile |</router-link>
+    <router-link to="/admin" v-if="UserAdmin">Admin</router-link>
   </div>
   <router-view/>
 </template>
@@ -12,12 +12,22 @@
 <script>
 import { RouterView, RouterLink } from "vue-router";
 
+//permet d'utiliser le store
+import { mapState } from "vuex"
+//import createStore from './store/index'
+
 export default {
   name: "App",
   components: {
     RouterView,
     RouterLink
-  }
+  },
+  computed: {
+		...mapState({
+			UserName: "UserName",
+      UserAdmin: "UserAdmin",     //creer variable identifiacation Admin
+    })
+  },
 }
 </script>
 

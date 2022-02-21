@@ -25,8 +25,9 @@ export default {
 	computed: {
 		...mapState({
 			UserName: "UserName",
-            UserLogin: "UserLogin",
-            UserId: "UserId",
+      UserLogin: "UserLogin",
+      UserToken: "UserToken",
+      UserId: "UserId",
 			UserEmail: "UserEmail",
 			UserPublications: "UserPublications",
 			UserFriends: "UserFriends"
@@ -38,12 +39,12 @@ export default {
   methods:{
     getAllPosts () {
 
-      // a faire / a faire / a faire / a faire / a faire / a faire / a faire
-      // MODIFICATION -> faire en sorte que seul les posts NON validés soit affichés
-      // a faire / a faire / a faire / a faire / a faire / a faire / a faire
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Bearer " + this.UserToken);
 
       var requestOptions = {
       method: 'GET',
+      headers: myHeaders,
       redirect: 'follow'
       };
 

@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 export default {
     name: "ModalBoxActionArticle",
     props : ['postid'],
@@ -18,6 +20,17 @@ export default {
         return {
             postId : this.postid,
         }
+    },
+	computed: {
+		...mapState({
+        UserName: "UserName",
+        UserLogin: "UserLogin",
+        UserToken: "UserToken",
+        UserId: "UserId",
+        UserEmail: "UserEmail",
+        UserPublications: "UserPublications",
+        UserFriends: "UserFriends"
+    })
     },
     setup() {
         console.log('%c loading ModalBoxActionArticle newest component', 'color:red');
@@ -28,16 +41,20 @@ export default {
             this.$emit('modal-closed', { message: false })
         },
         reviewModifyPost() {
-            const reviewNeeded = 1;
+            const reviewNeeded = 1;     // n'autorise pas l'affichage dans home
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + this.UserToken);
 
             let formData = new FormData();
             formData.append('Post_ID', this.postId);
             formData.append('reviewStatus', reviewNeeded);
             
             var requestOptions = {
-            method: 'POST',
-            body: formData,
-            redirect: 'follow'
+                method: 'POST',
+                body: formData,
+                headers: myHeaders,
+                redirect: 'follow'
             };
 
             fetch("http://localhost:3000/api/post/review", requestOptions)
@@ -50,10 +67,6 @@ export default {
             })
             .catch(error => console.log('error', error));
         }
-
-        // a faire / a faire / a faire / a faire / a faire / a faire / a faire
-        // + mise à jour de l'affichage de home
-        // a faire / a faire / a faire / a faire / a faire / a faire / a faire
     },
 }
 </script>

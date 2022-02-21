@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     UserName : "",
+    UserAdmin : false,    //by default we want it to be false.
     UserLogin : "",
     UserId : "",
     UserToken : "",
@@ -14,6 +15,7 @@ export default createStore({
   mutations: {
     userAuthentification (state, payload) {
       state.UserLogin = payload.userLogin;
+      state.UserAdmin = payload.userAdmin;
       state.UserEmail = payload.userEmail;
       state.UserId = payload.userId;
       state.userPicture = payload.userPicture;
