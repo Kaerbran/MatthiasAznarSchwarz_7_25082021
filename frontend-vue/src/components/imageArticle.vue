@@ -112,7 +112,7 @@ export default {
 <style scoped lang="scss">
 *, *:before, *:after {
   box-sizing: border-box;
-  margin: 0px 0px 0px 0px ; // top right bottom left
+  margin: 0px 0px 10px 0px ; // top right bottom left
 }
 
 //Style of the modal element
