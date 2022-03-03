@@ -38,11 +38,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 export default {
+    
     name: "Signin",
     data() {},
 	computed: {
-    },
+		...mapState({
+			UserAdmin: "UserAdmin"
+    })
+  },
     methods:{
         PostUserSignin () {
             const password = this.$refs.get_password.value;
@@ -67,7 +73,7 @@ export default {
             .then(response => response.text())
             .then((result) => {
                 //-> je mets à jour le store, afin que les données de l'utlisateurs connectées soient prises en compte
-                this.$store.commit('userAuthentification', JSON.parse(result))
+                this.$store.commit('userAuthentification', JSON.parse(result));
                 
                 //-> juste des consoles.log à supprimer plus tard
                 alert(result);

@@ -9,6 +9,7 @@ export default createStore({
     UserToken : "",
     UserEmail : "",
     userPicture : "",
+    PageRefresh : 0, 
     UserPublications : 35,
     UserFriends : 8,
   },
@@ -27,6 +28,11 @@ export default createStore({
       } else {
         console.log("user modified : state has changed");
       }
+
+      console.log(state.UserAdmin);
+    },
+    pageRefresh (state) {
+      state.PageRefresh += 1;
     }
   },
   actions: {

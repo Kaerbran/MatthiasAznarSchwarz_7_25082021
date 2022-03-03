@@ -23,7 +23,6 @@
 
 
 <script>
-//:src="userPicture"
 import { mapState } from "vuex"
 
 export default {

@@ -5,7 +5,7 @@
             :postid="articleData.Post_ID" />
             <div class="postWithImage__1div">
                 <picture class="postWithImage__pictureProfile">
-                    <img class="postWithImage__imgProfile" src="../assets/EugenieProfile.jpeg" alt="photo de profile de la personne qui a publié l'image">
+                    <img class="postWithImage__imgProfile" :src="this.pictureAutor" alt="photo de profile de la personne qui a publié l'image">
                 </picture>
                 <div class="postWithImage__2div">
                     <h4 class="postWithImage__h4">{{articleData.Post_Creator}}</h4>
@@ -32,8 +32,8 @@
 
 
 <script>
-//:src="userPicture"
 import ModalBoxActionArticle from '../components/modalBoxActionArticle'
+import { mapState } from "vuex"
 
 export default {
     name: 'ImageArticle',
@@ -45,8 +45,26 @@ export default {
         return {
             modalModif : false,
             articleData : this.articledata,
-            toggle : true
+            toggle : true,
+            pictureAutor : ""
         }
+    },
+	computed: {
+		...mapState({
+			UserName: "UserName",
+            UserLogin: "UserLogin",
+            UserToken: "UserToken",
+            UserId: "UserId",
+			UserEmail: "UserEmail",
+			UserPublications: "UserPublications",
+			UserFriends: "UserFriends"
+        })
+    },
+    async created () {
+        await this.getPicture()
+
+        console.log("this.articleData");
+        console.log(this.articleData);
     },
     methods:{
         clickShowModal(){  
@@ -57,15 +75,36 @@ export default {
         },
         upstreamMessageArticle(payload) {
             this.toggle = payload.message
+        },
+        getPicture(){
+            
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer " + this.UserToken);
+
+            let formData = new FormData();
+            formData.append('post_creator_id', this.articledata.Post_Creator_ID);
+
+            var requestOptions = {
+            method: 'POST',
+            body: formData,
+            headers: myHeaders,
+            redirect: 'follow'
+            };
+
+            fetch("http://localhost:3000/api/auth/user", requestOptions)
+            .then(response => response.text())
+            .then((result) => {
+                let Author = JSON.parse(result);
+                this.pictureAutor = Author.Person_Picture;
+            })
+            .catch((error) => {
+                console.log('error', error)
+            });
         }
     },
     setup() {
         console.log('%c loading ImageArticle component', 'color:green');
         return {};
-    },
-    created () {
-        console.log("this.articleData");
-        console.log(this.articleData);
     }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="templateProfile">
+    <div class="templateProfile" :key="this.PageRefresh">
         <div class="headerProfile">
             <img class="headerProfile__img" :src="userPicture" alt="photo de profile de Matthias Aznar-Schwarz">
             <div class="headerProfile__divGrp1">
@@ -41,7 +41,8 @@ export default {
     data() {
         return {
             modalModif : true,
-            modalSupp : false,  
+            modalSupp : false,
+            refreshKey: 0,
         }
     },
 	computed: {
@@ -51,7 +52,8 @@ export default {
 			UserEmail: "UserEmail",
 			UserPublications: "UserPublications",
             UserFriends: "UserFriends",
-            userPicture: "userPicture"
+            userPicture: "userPicture",
+            PageRefresh: "PageRefresh"
         })
 	},
     methods:{

@@ -51,6 +51,7 @@ export default {
                 UserEmail: "UserEmail",
                 UserPublications: "UserPublications",
                 UserFriends: "UserFriends",
+                UserToken: "UserToken",
         }) 
     },
     methods:{
@@ -90,12 +91,18 @@ export default {
                         };
 
                         fetch("http://localhost:3000/api/auth/modify", requestOptions)
-                        .then(response => response.text())
+                        .then((response) => {
+                                response.text();
+                                console.log(response);
+                        })
                         .then((result) => {
                                 this.message = result;
 
                                 //-> je mets à jour le store, afin que les données de l'utlisateurs connectées soient prises en compte
-                                this.$store.commit('userAuthentification', JSON.parse(result))
+                                this.$store.commit('userAuthentification', JSON.parse(result));
+
+                                //-> j'incrémente le state 'refresh' afin que la page soit mise à jour
+                                this.$store.commit('pageRefresh');
                         })
                         .catch(error => console.log('error', error));
                 }
