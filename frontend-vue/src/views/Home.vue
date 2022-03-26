@@ -77,6 +77,10 @@ export default {
       .then((result) => {
         this.posts = JSON.parse(result);
         console.log(this.posts);
+
+        //refreshing a key on a components, triggers a re-render of it
+        this.refreshKey += 1;
+
         Promise.resolve("Maj des posts réussie");
       })
       .catch((error) => {
@@ -115,17 +119,14 @@ export default {
         .then((result) => {
           this.message = result;
 
+          //emptying the this.file
+          this.file ="";
+
           //Lancer la méthode pour télécharger tous les postes
           //OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION
           // --->  faire en sorte que seul le nouveau poste soit chargé <---
           //OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION - OPTIMISATION
           this.getAllPosts();
-        })
-        .then((resultGetAllPost) => {
-          console.log(resultGetAllPost);
-
-          //refreshing a key on a components, triggers a re-render of it
-          this.refreshKey += 1;
         })
         .catch(error => console.log('error', error));
 
@@ -135,7 +136,7 @@ export default {
       }
     }
   }
-}
+} 
 </script>
 
 <style scoped lang="scss">

@@ -28,11 +28,13 @@ export default createStore({
       } else {
         console.log("user modified : state has changed");
       }
-
-      console.log(state.UserAdmin);
+      //console.log(payload);
     },
     pageRefresh (state) {
       state.PageRefresh += 1;
+    },
+    userDeleted (state) {
+      state.UserLogin = "";
     }
   },
   actions: {

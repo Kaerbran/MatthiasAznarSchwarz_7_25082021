@@ -1,5 +1,5 @@
 <template>
-    <div class="templateProfile" :key="this.PageRefresh">
+    <div class="templateProfile">
         <div class="headerProfile">
             <img class="headerProfile__img" :src="userPicture" alt="photo de profile de Matthias Aznar-Schwarz">
             <div class="headerProfile__divGrp1">
@@ -18,7 +18,7 @@
                 <button class="navProfile__btt navProfile__btt--sup" @click="clickSuppressionComponent()">Supprimer profile</button>
             </nav>
 
-            <ProfileModification class="replacedTemplate" v-show="modalModif"/>
+            <ProfileModification class="replacedTemplate" v-show="modalModif" @profile-updated="upstreamMessageProfile" />
             <ProfileSuppression class="replacedTemplate" v-show="modalSupp"/>
 
         </div>
@@ -53,9 +53,16 @@ export default {
 			UserPublications: "UserPublications",
             UserFriends: "UserFriends",
             userPicture: "userPicture",
-            PageRefresh: "PageRefresh"
         })
 	},
+    async created() {
+        console.log("created started")
+        //await this.getAllPosts()
+    },
+    async beforeUpdate() {
+        console.log('beforeUpdate started')
+        //await this.getAllPosts()
+    },
     methods:{
        clickModificationComponent(){  // when button is used, control whether a modal is visible or not
            if (!this.modalModif) {
@@ -68,7 +75,7 @@ export default {
                this.modalModif = !this.modalModif;
                this.modalSupp = !this.modalSupp;
            }
-       },
+       }
     }
 }
 </script>
