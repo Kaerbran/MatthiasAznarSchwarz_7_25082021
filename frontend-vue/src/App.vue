@@ -4,15 +4,14 @@
     <router-link to="/about" v-if="UserName">About |</router-link>
     <router-link to="/signin" v-if="UserName">Sign In |</router-link>
     <router-link to="/profile" v-if="UserName">Profile |</router-link>
-    <router-link to="/admin" v-if="UserAdmin">Admin</router-link>
+    <router-link to="/admin" v-if="UserAdmin">Admin |</router-link>
+    <router-link to="/admin" v-if="UserName" @click.prevent="pageDeco" >Deconexion</router-link>
   </div>
   <router-view/>
 </template>
 
 <script>
 import { RouterView, RouterLink } from "vue-router";
-
-//permet d'utiliser le store
 import { mapState } from "vuex"
 //import createStore from './store/index'
 
@@ -27,6 +26,11 @@ export default {
 			UserName: "UserName",
       UserAdmin: "UserAdmin",     //creer variable identifiacation Admin
     })
+  },
+  methods: {
+    pageDeco (){
+      this.$store.commit('userDeleted');
+    }
   },
 }
 </script>
