@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     pageDeco (){
-      this.$store.commit('userDeleted');
+      location.reload();
     }
   },
 }
